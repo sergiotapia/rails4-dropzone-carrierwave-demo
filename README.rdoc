@@ -1,28 +1,13 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a sample Ruby on Rails 4 application that
+shows you how to integrate DropzoneJS and Carrierwave for seamless
+multiple image uploads.
 
-Things you may want to cover:
+It has two models: `Product` and `Picture`
 
-* Ruby version
+The meat of the application is in the `pictures_controller.rb`
+and the `show.html.erb`.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Be sure to check out `application.js` as well for the DropzoneJS
+configuration.
