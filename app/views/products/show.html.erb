@@ -5,5 +5,16 @@
   <%= @product.name %>
 </p>
 
+<p><strong>Existing Images:</strong></p>
+<div style="overflow: hidden;border: 1px solid #CCC;padding: 10px;">
+  <% @product.pictures.each do |picture| %>
+    <img src="<%= picture.image.url %>" style="float: left; width: 20%;"/>
+  <% end %>
+</div>
+
+<%= form_for [@product, Picture.new], :html => {id: 'picture-dropzone', class: :dropzone, multipart: true} do |f| %>
+  <%= f.hidden_field :image %>
+<% end %>
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
