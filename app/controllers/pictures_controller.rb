@@ -25,16 +25,10 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(picture_params)
-
-    respond_to do |format|
-      if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render :show, status: :created, location: @picture }
-      else
-        format.html { render :new }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
-      end
-    end
+    @picture.product_id = params[:product_id]
+    @picture.image = params[:file]
+    @picture.save!
+    render json: @picture
   end
 
   # PATCH/PUT /pictures/1
@@ -55,10 +49,7 @@ class PicturesController < ApplicationController
   # DELETE /pictures/1.json
   def destroy
     @picture.destroy
-    respond_to do |format|
-      format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    render nothing: true
   end
 
   private
@@ -69,6 +60,6 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:product_id)
+      params.require(:picture).permit(:product_id, :image)
     end
 end
